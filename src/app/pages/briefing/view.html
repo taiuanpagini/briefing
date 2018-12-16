@@ -1,0 +1,253 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <!--ROW LIST-->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon card-page-{{this.GlobalService.theme}}">
+                        <i class="material-icons">list</i>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title"><strong>Tipo de briefing: {{ tipoBriefing() }}</strong></h4>
+
+                        <div id="content" #content *ngIf="this.itemCarregado">
+                            <table class="table table-striped table-bordered mt-5">
+                                <tbody>
+                                    <tr>
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td>{{this.itemCarregado.id}}</td>
+                                        <td width="15%"><b>Titulo do Briefing</b></td>
+                                        <td>{{this.itemCarregado.titulo}}</td>
+                                        <td width="15%"><b>Nome do Clinete</b></td>
+                                        <td>{{this.itemCarregado.nome_usuario}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="15%"><b>Data Inicial</b></td>
+                                        <td>{{this.itemCarregado.prazo_inicio == "" ? "Sem data definida" : this.itemCarregado.prazo_inicio | date}}</td>
+                                        <td width="15%"><b>Data Final Prevista</b></td>
+                                        <td>{{this.itemCarregado.prazo_fim == "" ? "Sem data definida" : this.itemCarregado.prazo_fim | date}}</td>
+                                        <td width="15%"><b>Status</b></td>
+                                        <td>{{this.itemCarregado.sts == "u" ? "Briefing em análise" : "Briefing em produção"}}</td>
+                                    </tr>
+                                    <!-- digital -->
+                                    <tr *ngIf="this.itemCarregado.post_simples_digital">
+                                        <td width="15%"><b>Descrição Post Simples</b></td>
+                                        <td colspan="5">{{this.itemCarregado.post_simples_digital}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.post_carrossel_digital">
+                                        <td width="15%"><b>Descrição Post Carrossel</b></td>
+                                        <td colspan="5">{{this.itemCarregado.post_carrossel_digital}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.banner_site_digital">
+                                        <td width="15%"><b>Descrição Banner Site</b></td>
+                                        <td colspan="5">{{this.itemCarregado.banner_site_digital}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.banner_whats_digital">
+                                        <td width="15%"><b>Descrição Banner What'sApp</b></td>
+                                        <td colspan="5">{{this.itemCarregado.banner_whats_digital}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.stories_digital">
+                                        <td width="15%"><b>Descrição Stories</b></td>
+                                        <td colspan="5">{{this.itemCarregado.stories_digital}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.email_marketing_digital">
+                                        <td width="15%"><b>Descrição E-mail Marketing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.email_marketing_digital}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.outros_digital">
+                                        <td width="15%"><b>Descrição Outras Peças Digital</b></td>
+                                        <td colspan="5">{{this.itemCarregado.outros_digital}}</td>
+                                    </tr>
+
+                                    <!-- impresso simples -->
+                                    <tr *ngIf="this.itemCarregado.flyer_medida_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.flyer_medida_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.flyer_fre_ver_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.flyer_fre_ver_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.flyer_descricao_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.flyer_descricao_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.flyer_informacoes_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.flyer_informacoes_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.folder_medida_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.folder_medida_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.folder_numero_dobras_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.folder_numero_dobras_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.folder_informacoes_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.folder_informacoes_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.folder_descricao_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.folder_descricao_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.cartoes_medida_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.cartoes_medida_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.cartoes_descricao_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.cartoes_descricao_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.cartoes_informacoes_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.cartoes_informacoes_imp_simples}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.outros_imp_simples">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.outros_imp_simples}}</td>
+                                    </tr>
+
+                                    <!-- impresso institucional -->
+                                    <tr *ngIf="this.itemCarregado.folder_medida_imp_institucional">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.folder_medida_imp_institucional}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.folder_numero_Paginas_imp_institucional">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.folder_numero_Paginas_imp_institucional}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.folder_descricao_imp_institucional">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.folder_descricao_imp_institucional}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.folder_informacoes_imp_institucional">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.folder_informacoes_imp_institucional}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.outros_imp_institucional">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.outros_imp_institucional}}</td>
+                                    </tr>
+
+                                    <!-- video -->
+                                    <tr *ngIf="this.itemCarregado.vt_duracao_video">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.vt_duracao_video}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.vt_descricao_video">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.vt_descricao_video}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.vt_campanha_video">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.vt_campanha_video}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.vt_informacoes_video">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.vt_informacoes_video}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.vt_veiculacao_video">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.vt_veiculacao_video}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.led_duracao_video">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.led_duracao_video}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.led_descricao_video">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.led_descricao_video}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.led_campanha_video">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.led_campanha_video}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.led_informacoes_video">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.led_informacoes_video}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.led_formato_video">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.led_formato_video}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.outros_videos">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.outros_videos}}</td>
+                                    </tr>
+
+                                    <!-- imagem -->
+                                    <tr *ngIf="this.itemCarregado.captacao_campanha_imagem">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.captacao_campanha_imagem}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.captacao_descricao_imagem">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.captacao_descricao_imagem}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.outros_imagem">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.outros_imagem}}</td>
+                                    </tr>
+
+                                    <!-- midia out of home -->
+                                    <tr *ngIf="this.itemCarregado.outdoor_informacoes_midia">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.outdoor_informacoes_midia}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.outdoor_medida_midia">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.outdoor_medida_midia}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.banner_informacoes_midia">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.banner_informacoes_midia}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.banner_medida_midia">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.banner_medida_midia}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.banner_localizacao_midia">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.banner_localizacao_midia}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.spot_informacoes_midia">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.spot_informacoes_midia}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.outros_midia">
+                                        <td width="15%"><b>Número do Briefing</b></td>
+                                        <td colspan="5">{{this.itemCarregado.outros_midia}}</td>
+                                    </tr>
+
+                                    <!-- objeções e observações -->
+                                    <tr *ngIf="this.itemCarregado.objecoes">
+                                        <td width="15%"><b>Objeções</b></td>
+                                        <td colspan="5">{{this.itemCarregado.objecoes}}</td>
+                                    </tr>
+                                    <tr *ngIf="this.itemCarregado.observacoes">
+                                        <td width="15%"><b>Observações</b></td>
+                                        <td colspan="5">{{this.itemCarregado.observacoes}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <a class="btn btn-success" (click)="downloadPDF()"><i
+                        class="fa fa-file-pdf-o mr-2" tooltip="Gerar PDF" placement="top"></i>Gerar PDF</a>
+                <component-back-button></component-back-button>
+            </div>
+
+        </div>
+        <!--FINAL ROW LIST-->
+
+    </div>
+</div>

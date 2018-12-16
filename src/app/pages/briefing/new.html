@@ -1,0 +1,631 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <!--ROW FORM-->
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="card">
+                    <form #form="ngForm" (ngSubmit)="postItem(form)">
+
+                        <div class="card-header card-header-icon card-page-{{this.GlobalService.theme}}">
+                            <i class="material-icons">menu</i>
+                        </div>
+
+                        <div class="card-content">
+                            <h4 class="card-title"><strong>Adicionar item</strong></h4>
+
+                            <div class="row">
+
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">text_fields</i>
+                                        </span>
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Titulo do Job
+                                                <small>(obrigatório)</small>
+                                            </label>
+                                            <input name="titulo" ngModel required type="text" class="form-control input-{{this.GlobalService.theme}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">text_fields</i>
+                                        </span>
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Data de Início
+                                                <small>(obrigatório)</small>
+                                            </label>
+                                            <ng-datepicker name="prazo_inicio" ngModel [options]="options"></ng-datepicker>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">text_fields</i>
+                                        </span>
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Data de Entrega Prevista
+                                                <small>(obrigatório)</small>
+                                            </label>
+                                            <ng-datepicker name="prazo_fim" ngModel [options]="options"></ng-datepicker>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="input-check">
+                                        <input type="checkbox" ngModel name="digital" data-md-icheck (change)="toggleVisibilityDigital($event)"
+                                            disabled="{{ markedImpSimples == true ? true : false || markedImpInstitucional == true ? true : false || markedVideo == true ? true : false || markedImagem == true ? true : false || markedMidia == true ? true : false }}">
+                                        Digital
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="input-check">
+                                        <input type="checkbox" ngModel name="imp_simples" data-md-icheck
+                                            (change)="toggleVisibilityImpSimples($event)"
+                                            disabled="{{ markedDigital == true ? true : false || markedImpInstitucional == true ? true : false || markedVideo == true ? true : false || markedImagem == true ? true : false || markedMidia == true ? true : false }}">
+                                        Impresso Simples
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="input-check">
+                                        <input type="checkbox" ngModel name="imp_institucional" data-md-icheck
+                                            (change)="toggleVisibilityImpInstitucional($event)"
+                                            disabled="{{ markedImpSimples == true ? true : false || markedDigital == true ? true : false || markedVideo == true ? true : false || markedImagem == true ? true : false || markedMidia == true ? true : false }}">
+                                        Impresso Institucional
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="input-check">
+                                        <input type="checkbox" ngModel name="video" data-md-icheck (change)="toggleVisibilityVideo($event)"
+                                            disabled="{{ markedImpSimples == true ? true : false || markedImpInstitucional == true ? true : false || markedDigital == true ? true : false || markedImagem == true ? true : false || markedMidia == true ? true : false }}">
+                                        Vídeo
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="input-check">
+                                        <input type="checkbox" ngModel name="imagem" data-md-icheck (change)="toggleVisibilityImagem($event)"
+                                            disabled="{{ markedImpSimples == true ? true : false || markedImpInstitucional == true ? true : false || markedVideo == true ? true : false || markedDigital == true ? true : false || markedMidia == true ? true : false }}">
+                                        Imagem
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="input-check">
+                                        <input type="checkbox" ngModel name="midia" data-md-icheck (change)="toggleVisibilityMidia($event)"
+                                            disabled="{{ markedImpSimples == true ? true : false || markedImpInstitucional == true ? true : false || markedVideo == true ? true : false || markedDigital == true ? true : false || markedDigital == true ? true : false }}">
+                                        Mídia Out of Home
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <!-- CAMPOS DIGITAL -->
+                                <div class="col-sm-12 mt-5" *ngIf="markedDigital">
+                                    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+                                        <ngb-panel title="Post Simples" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Post Simples
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="post_simples_digital" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Post Carrossel">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Post Carrossel
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="post_carrossel_digital" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Stories">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Stories
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="stories_digital" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Banner Site">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Banner Site
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="banner_site_digital" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Banner What'sApp">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Banner What'sApp
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <h4 class="card-title"><strong>Banner What'sApp</strong></h4>
+                                                <app-ngx-editor name="banner_whats_digital" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="E-mail Marketing">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">E-mail Marketing
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="email_marketing_digital" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Outras Peças">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Outras Peças(Preencher com o máximo de
+                                                    informações possível)
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="outros_digital" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                    </ngb-accordion>
+                                </div>
+
+                                <!-- CAMPOS IMPRESSO SIMPLES -->
+                                <div class="col-sm-12 mt-5" *ngIf="markedImpSimples">
+                                    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+                                        <ngb-panel title="Flyer" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Medida
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="flyer_medida_imp_simples" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Frente e Verso?
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="flyer_fre_ver_imp_simples" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6 mt-2">
+                                                        <label class="control-label">Descrição(objetivo da peça)
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="flyer_descricao_imp_simples"
+                                                            [placeholder]="'Digite aqui o texto'" [spellcheck]="true"
+                                                            ngModel></app-ngx-editor>
+                                                    </div>
+                                                    <div class="col-sm-6 mt-2">
+                                                        <label class="control-label">Informações
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="flyer_informacoes_imp_simples"
+                                                            [placeholder]="'Digite aqui o texto'" [spellcheck]="true"
+                                                            ngModel></app-ngx-editor>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Folder" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Medida
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="folder_medida_imp_simples" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Numero de dobras
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="folder_numero_dobras_imp_simples" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6 mt-2">
+                                                        <label class="control-label">Descrição(objetivo da peça)
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="folder_descricao_imp_simples"
+                                                            [placeholder]="'Digite aqui o texto'" [spellcheck]="true"
+                                                            ngModel></app-ngx-editor>
+                                                    </div>
+                                                    <div class="col-sm-6 mt-2">
+                                                        <label class="control-label">Informações
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="folder_informacoes_imp_simples"
+                                                            [placeholder]="'Digite aqui o texto'" [spellcheck]="true"
+                                                            ngModel></app-ngx-editor>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Cartões" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <label class="control-label">Medida
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="cartoes_medida_imp_simples" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6 mt-2">
+                                                        <label class="control-label">Descrição(objetivo da peça)
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="cartoes_descricao_imp_simples"
+                                                            [placeholder]="'Digite aqui o texto'" [spellcheck]="true"
+                                                            ngModel></app-ngx-editor>
+                                                    </div>
+                                                    <div class="col-sm-6 mt-2">
+                                                        <label class="control-label">Informações
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="cartoes_informacoes_imp_simples"
+                                                            [placeholder]="'Digite aqui o texto'" [spellcheck]="true"
+                                                            ngModel></app-ngx-editor>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Outras Peças">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Outras Peças(Preencher com o máximo de
+                                                    informações possível)
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="outros_imp_simples" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                    </ngb-accordion>
+                                </div>
+
+                                <!-- CAMPOS IMPRESSO INSTITUCIONAL -->
+                                <div class="col-sm-12 mt-5" *ngIf="markedImpInstitucional">
+                                    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+                                        <ngb-panel title="Folder Luxo" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Medida
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="folder_medida_imp_institucional" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Frente e Verso?
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="folder_numero_Paginas_imp_institucional" ngModel
+                                                            type="text" class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6 mt-2">
+                                                        <label class="control-label">Descrição(objetivo da peça)
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="folder_descricao_imp_institucional"
+                                                            [placeholder]="'Digite aqui o texto'" [spellcheck]="true"
+                                                            ngModel></app-ngx-editor>
+                                                    </div>
+                                                    <div class="col-sm-6 mt-2">
+                                                        <label class="control-label">Informações
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="folder_informacoes_imp_institucional"
+                                                            [placeholder]="'Digite aqui o texto'" [spellcheck]="true"
+                                                            ngModel></app-ngx-editor>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Cardápio" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h5>No caso do cardápio, pedimos para que envie todos os itens
+                                                            por e-mail para podermos conferir e fazer a distribuição
+                                                            dos tópicos.</h5>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Outras Peças">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Outras Peças(Preencher com o máximo de
+                                                    informações possível)
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="outros_imp_institucional" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                    </ngb-accordion>
+                                </div>
+
+                                <!-- CAMPOS VIDEO -->
+                                <div class="col-sm-12 mt-5" *ngIf="markedVideo">
+                                    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+                                        <ngb-panel title="VT" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Duração
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="vt_duracao_video" ngModel type="text" class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Veiculação
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="vt_veiculacao_video" ngModel type="text" class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Descrição do material (qual o
+                                                            objetivo do VT)
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="vt_descricao_video" [placeholder]="'Digite aqui o texto'"
+                                                            [spellcheck]="true" ngModel></app-ngx-editor>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Campanha
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="vt_campanha_video" [placeholder]="'Digite aqui o texto'"
+                                                            [spellcheck]="true" ngModel></app-ngx-editor>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Informações necessárias
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="vt_informacoes_video" [placeholder]="'Digite aqui o texto'"
+                                                            [spellcheck]="true" ngModel></app-ngx-editor>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="LED" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Duração
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="led_duracao_video" ngModel type="text" class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Formato (horizontal ou vertical)
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="led_formato_video" ngModel type="text" class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Descrição do material
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="led_descricao_video" [placeholder]="'Digite aqui o texto'"
+                                                            [spellcheck]="true" ngModel></app-ngx-editor>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Campanha
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="led_campanha_video" [placeholder]="'Digite aqui o texto'"
+                                                            [spellcheck]="true" ngModel></app-ngx-editor>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Informações necessárias
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <app-ngx-editor name="led_informacoes_video" [placeholder]="'Digite aqui o texto'"
+                                                            [spellcheck]="true" ngModel></app-ngx-editor>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Outras Peças">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Outras Peças(Preencher com o máximo de
+                                                    informações possível)
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="outros_videos" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                    </ngb-accordion>
+                                </div>
+
+                                <!-- CAMPOS IMAGEM -->
+                                <div class="col-sm-12 mt-5" *ngIf="markedImagem">
+                                    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+                                        <ngb-panel title="Captação Fotográfica" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Campanha
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="captacao_campanha_imagem" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Descrição
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="captacao_descricao_imagem" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Outras Peças">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Outras Peças(Preencher com o máximo de
+                                                    informações possível)
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="outros_imagem" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                    </ngb-accordion>
+                                </div>
+
+                                <!-- CAMPOS MIDIA OUT OF HOME -->
+                                <div class="col-sm-12 mt-5" *ngIf="markedMidia">
+                                    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+                                        <ngb-panel title="Outdoor" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Informações
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="outdoor_informacoes_midia" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label">Medida
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="outdoor_medida_midia" ngModel type="text" class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Banner" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Informações
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="banner_informacoes_midia" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Medida
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="banner_medida_midia" ngModel type="text" class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Localização
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="banner_localizacao_midia" ngModel type="text"
+                                                            class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Spot" class="painel">
+                                            <ng-template ngbPanelContent>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <label class="control-label">Informações
+                                                            <small>(obrigatório)</small>
+                                                        </label>
+                                                        <input name="spot_informacoes_midia" ngModel type="text" class="form-control input-{{this.GlobalService.theme}}">
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-panel>
+                                        <ngb-panel title="Outras Peças">
+                                            <ng-template ngbPanelContent>
+                                                <label class="control-label">Outras Peças(Preencher com o máximo de
+                                                    informações possível)
+                                                    <small>(obrigatório)</small>
+                                                </label>
+                                                <app-ngx-editor name="outros_midia" [placeholder]="'Digite aqui o texto'"
+                                                    [spellcheck]="true" ngModel></app-ngx-editor>
+                                            </ng-template>
+                                        </ngb-panel>
+                                    </ngb-accordion>
+                                </div>
+
+                                <div class="col-sm-6 mt-4">
+                                    <div class="input-group">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label mb-1">Objeções <br>
+                                                Caso haja alguma objeção, ou seja, algum fator a ser evitado (exemplo:
+                                                alguma imagem
+                                                específica que foi reprovada, evitar algum material por conta do custo)
+                                                favor mencionar
+                                                abaixo.
+                                            </label>
+                                            <app-ngx-editor name="objecoes" [placeholder]="'Digite aqui o texto'"
+                                                [spellcheck]="true" ngModel></app-ngx-editor>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 mt-4">
+                                    <div class="input-group">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Observações <br>
+                                                Caso deseje acrescentar mais informações ou reforçar algum detalhe,
+                                                agora é o
+                                                momento.
+                                            </label>
+                                            <app-ngx-editor name="observacoes" [placeholder]="'Digite aqui o texto'"
+                                                [spellcheck]="true" ngModel class="mt-5"></app-ngx-editor>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!--SUBMIT BTN-->
+                        <div class="card-footer">
+                            <div class="col-sm-12 text-right">
+                                <button type="submit" class="btn btn-success" [disabled]="this.GlobalService.inProcessForm">
+                                    Adicionar
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                </button>
+                                <p><br></p>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <component-back-button></component-back-button>
+            </div>
+
+        </div>
+        <!--ROW FINAL-->
+
+    </div>
+</div>

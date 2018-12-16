@@ -1,0 +1,93 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <!--ROW DADOS USER-->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card card-stats">
+                    <div class="card-content text-uppercase text-left">
+                        <h3 class="card-title"><strong>{{this.GlobalService.txtSaudacao}}, {{dadosUser.n}}!</strong></h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            Seja bem vindo ao Sistema Gerenciador de Briefing!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--ROW LIST-->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon card-page-{{this.GlobalService.theme}}">
+                        <i class="material-icons">list</i>
+                    </div>
+                    <div class="card-content">
+
+                        <div *ngIf="dadosUser.p == 'Admin'">
+                            <!--DATA-TABLE-->
+                            <div *ngIf="itensAdmin?.length == 0" class="text-center">
+                                Nenhum registro encontrado
+                            </div>
+                            <div *ngIf="itensAdmin?.length > 0">
+                                <component-data-table titleTable="Briefings em análise"
+                                    [itens]="itensAdmin" [itensFilter]="itensAdmin" [headers]="headers" ordenar="name"
+                                    [totalRegistros]="itensAdmin.length" (viewEvento)="viewItemAdmin($event)"
+                                    (editEvento)="editItemAdmin($event)" (deleteEvento)="deleteItemAdmin($event)"
+                                    (desativarEvento)="desativarItemAdmin($event)" (ativarEvento)="ativarItemAdmin($event)">
+                                </component-data-table>
+                            </div>
+                        </div>
+
+                        <div *ngIf="dadosUser.p != 'Admin'">
+                            <!--DATA-TABLE-->
+                            <div *ngIf="itensCliente?.length == 0" class="text-center">
+                                Nenhum registro encontrado
+                            </div>
+                            <div *ngIf="itensCliente?.length > 0">
+                                <component-data-table titleTable="Briefings em análise"
+                                    [itens]="itensCliente" [itensFilter]="itensCliente" [headers]="headers" ordenar="name"
+                                    [totalRegistros]="itensCliente.length" (viewEvento)="viewItemCliente($event)"
+                                    (editEvento)="editItemCliente($event)" (deleteEvento)="deleteItemCliente($event)"
+                                    (desativarEvento)="desativarItemCliente($event)" (ativarEvento)="ativarItemCliente($event)">
+                                </component-data-table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <a routerLink="/briefing/novo" class="btn btn-{{this.GlobalService.theme}}">
+                    <span class="btn-label">
+                        <i class="material-icons">playlist_add</i>
+                    </span>
+                    Novo Item
+                </a>
+
+                <a (click)="getItensAdmin()" class="btn btn-info">
+                    <span class="btn-label">
+                        <i class="material-icons">refresh</i>
+                    </span>
+                    Atualizar
+                </a>
+            </div>
+
+        </div>
+        <!--FINAL ROW LIST-->
+
+        <!-- INICIO ROW SLIDERS -->
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+
+
+            </div>
+        </div>
+        <!-- FINAL ROW SLIDERS -->
+
+    </div>
+</div>

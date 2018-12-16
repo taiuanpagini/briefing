@@ -1,0 +1,82 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <!--ROW LIST-->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon card-page-{{this.GlobalService.theme}}">
+                        <i class="material-icons">list</i>
+                    </div>
+                    <div class="card-content">
+
+                        <div *ngIf="dadosUser.p == 'Admin'">
+                            <!--DATA-TABLE-->
+                            <div *ngIf="itensAdmin?.length == 0" class="text-center">
+                                Nenhum registro encontrado
+                            </div>
+                            <div *ngIf="itensAdmin?.length > 0">
+                                <component-data-table
+                                    titleTable="Briefings cadastrados(as)"
+                                    [itens]="itensAdmin"
+                                    [itensFilter]="itensAdmin"
+                                    [headers]="headers"
+                                    ordenar="name"
+                                    [totalRegistros]="itensAdmin.length"
+                                    (viewEvento)="viewItemAdmin($event)"
+                                    (editEvento)="editItemAdmin($event)"
+                                    (deleteEvento)="deleteItemAdmin($event)"
+                                    (desativarEvento)="desativarItemAdmin($event)"
+                                    (ativarEvento)="ativarItemAdmin($event)">
+                                </component-data-table>
+                            </div>                        
+                        </div>
+                        
+                        <div *ngIf="dadosUser.p != 'Admin'">
+                            <!--DATA-TABLE-->
+                            <div *ngIf="itensCliente?.length == 0" class="text-center">
+                                Nenhum registro encontrado
+                            </div>
+                            <div *ngIf="itensCliente?.length > 0">
+                                <component-data-table
+                                    titleTable="Briefings cadastrados(as)"
+                                    [itens]="itensCliente"
+                                    [itensFilter]="itensCliente"
+                                    [headers]="headers"
+                                    ordenar="name"
+                                    [totalRegistros]="itensCliente.length"
+                                    (viewEvento)="viewItemCliente($event)"
+                                    (editEvento)="editItemCliente($event)"
+                                    (deleteEvento)="deleteItemCliente($event)"
+                                    (desativarEvento)="desativarItemCliente($event)"
+                                    (ativarEvento)="ativarItemCliente($event)">
+                                </component-data-table>
+                            </div>   
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <a routerLink="/briefing/novo" class="btn btn-{{this.GlobalService.theme}}">
+                    <span class="btn-label">
+                        <i class="material-icons">playlist_add</i>
+                    </span>
+                    Novo Item
+                </a>
+
+                <a (click)="getItensCliente()" class="btn btn-info">
+                    <span class="btn-label">
+                        <i class="material-icons">refresh</i>
+                    </span>
+                    Atualizar
+                </a>
+            </div>
+
+        </div>
+        <!--FINAL ROW LIST-->
+
+    </div>
+</div>
