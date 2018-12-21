@@ -62,7 +62,7 @@ export class UsuarioPerfilComponent implements OnInit {
         stsValue: "A",
         deleteValue: "N"
       }
-      this.HttpService.JSON_GET(`/mysql/data/item/usuarios/${params.id}/*/nome`, headerConfig)
+      this.HttpService.JSON_GET(`/data/item/usuarios/${params.id}/*/nome`, headerConfig)
         .then(
         (res) => {
 
@@ -102,7 +102,7 @@ export class UsuarioPerfilComponent implements OnInit {
           stsValue: "A",
           deleteValue: "N"
         }
-        this.HttpService.JSON_PUT(`/mysql/data/item/usuarios/${params.id}/*/nome`, headerConfig, form.value)//CADASTRO DE USUARIOS      
+        this.HttpService.JSON_PUT(`/data/item/usuarios/${params.id}/*/nome`, headerConfig, form.value)//CADASTRO DE USUARIOS      
           .then(
           (res) => {
             

@@ -63,7 +63,7 @@
                                 <div class="col-sm-2">
                                     <label class="input-check">
                                         <input type="checkbox" ngModel name="digital" data-md-icheck (change)="toggleVisibilityDigital($event)"
-                                            disabled="{{ markedImpSimples == true ? true : false || markedImpInstitucional == true ? true : false || markedVideo == true ? true : false || markedImagem == true ? true : false || markedMidia == true ? true : false }}">
+                                            [disabled]="markedImpSimples ? true : false || markedImpInstitucional ? true : false || markedVideo ? true : false || markedImagem ? true : false || markedMidia ? true : false">
                                         Digital
                                         <span class="checkmark"></span>
                                     </label>
@@ -73,7 +73,7 @@
                                     <label class="input-check">
                                         <input type="checkbox" ngModel name="imp_simples" data-md-icheck
                                             (change)="toggleVisibilityImpSimples($event)"
-                                            disabled="{{ markedDigital == true ? true : false || markedImpInstitucional == true ? true : false || markedVideo == true ? true : false || markedImagem == true ? true : false || markedMidia == true ? true : false }}">
+                                            [disabled]="markedDigital ? true : false || markedImpInstitucional ? true : false || markedVideo ? true : false || markedImagem ? true : false || markedMidia ? true : false">
                                         Impresso Simples
                                         <span class="checkmark"></span>
                                     </label>
@@ -83,7 +83,7 @@
                                     <label class="input-check">
                                         <input type="checkbox" ngModel name="imp_institucional" data-md-icheck
                                             (change)="toggleVisibilityImpInstitucional($event)"
-                                            disabled="{{ markedImpSimples == true ? true : false || markedDigital == true ? true : false || markedVideo == true ? true : false || markedImagem == true ? true : false || markedMidia == true ? true : false }}">
+                                            [disabled]="markedImpSimples ? true : false || markedDigital ? true : false || markedVideo ? true : false || markedImagem ? true : false || markedMidia ? true : false">
                                         Impresso Institucional
                                         <span class="checkmark"></span>
                                     </label>
@@ -92,7 +92,7 @@
                                 <div class="col-sm-2">
                                     <label class="input-check">
                                         <input type="checkbox" ngModel name="video" data-md-icheck (change)="toggleVisibilityVideo($event)"
-                                            disabled="{{ markedImpSimples == true ? true : false || markedImpInstitucional == true ? true : false || markedDigital == true ? true : false || markedImagem == true ? true : false || markedMidia == true ? true : false }}">
+                                            [disabled]="markedImpSimples ? true : false || markedImpInstitucional ? true : false || markedDigital ? true : false || markedImagem ? true : false || markedMidia ? true : false">
                                         Vídeo
                                         <span class="checkmark"></span>
                                     </label>
@@ -101,7 +101,7 @@
                                 <div class="col-sm-2">
                                     <label class="input-check">
                                         <input type="checkbox" ngModel name="imagem" data-md-icheck (change)="toggleVisibilityImagem($event)"
-                                            disabled="{{ markedImpSimples == true ? true : false || markedImpInstitucional == true ? true : false || markedVideo == true ? true : false || markedDigital == true ? true : false || markedMidia == true ? true : false }}">
+                                            [disabled]="markedImpSimples ? true : false || markedImpInstitucional ? true : false || markedVideo ? true : false || markedDigital ? true : false || markedMidia ? true : false">
                                         Imagem
                                         <span class="checkmark"></span>
                                     </label>
@@ -110,7 +110,7 @@
                                 <div class="col-sm-2">
                                     <label class="input-check">
                                         <input type="checkbox" ngModel name="midia" data-md-icheck (change)="toggleVisibilityMidia($event)"
-                                            disabled="{{ markedImpSimples == true ? true : false || markedImpInstitucional == true ? true : false || markedVideo == true ? true : false || markedDigital == true ? true : false || markedDigital == true ? true : false }}">
+                                            [disabled]="markedImpSimples ? true : false || markedImpInstitucional ? true : false || markedVideo ? true : false || markedDigital ? true : false || markedDigital ? true : false">
                                         Mídia Out of Home
                                         <span class="checkmark"></span>
                                     </label>

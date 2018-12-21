@@ -10,18 +10,24 @@
                         <i class="material-icons">list</i>
                     </div>
                     <div class="card-content">
-                        <h4 class="card-title"><strong>Tipo de briefing: {{ tipoBriefing() }}</strong></h4>
-
                         <div *ngIf="this.itemCarregado">
-                            <table id="contentToConvert" class="table table-striped table-bordered mt-5">
+                            <table id="contentToConvert" class="table table-bordered mt-5">
                                 <tbody>
+                                    <tr class="no-border">
+                                        <td><img src="../../../assets/img/logo.png" class="img-pdf" alt=""></td>
+                                        <td colspan="5" class="text-right">
+                                            <b>
+                                                Número do briefing: {{this.itemCarregado.id}} <br>
+                                                Empresa: {{this.itemCarregado.nome_usuario}}
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td colspan="6"><b>Briefing: {{ tipoBriefing() }}</b></td>
+                                    </tr>
                                     <tr>
-                                        <td width="15%"><b>Número do Briefing</b></td>
-                                        <td>{{this.itemCarregado.id}}</td>
                                         <td width="15%"><b>Titulo do Briefing</b></td>
-                                        <td>{{this.itemCarregado.titulo}}</td>
-                                        <td width="15%"><b>Nome do Clinete</b></td>
-                                        <td>{{this.itemCarregado.nome_usuario}}</td>
+                                        <td colspan="5">{{this.itemCarregado.titulo}}</td>
                                     </tr>
 
                                     <tr>

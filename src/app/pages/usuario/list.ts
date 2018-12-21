@@ -51,7 +51,7 @@ export class UsuarioListComponent implements OnInit {
       stsValue: "A",
       deleteValue: "N"
     }
-    this.HttpService.JSON_GET(`/mysql/data/usuarios/nome/asc/*/id,hashID,sts,nome,email,tipo/*`, headerConfig)
+    this.HttpService.JSON_GET(`/data/usuarios/nome/asc/*/id,hashID,sts,nome,email,tipo/*`, headerConfig)
       .then(
       (res) => {
         this.AlertService.alertLoadingClose();
@@ -91,7 +91,7 @@ export class UsuarioListComponent implements OnInit {
         if (res == true) {
 
           this.AlertService.alertLoadingShow();
-          this.HttpService.JSON_DELETE(`/mysql/data/item/usuarios/${event.id}/*/nome/S`, true, true)
+          this.HttpService.JSON_DELETE(`/data/item/usuarios/${event.id}/*/nome/S`, true, true)
             .then(
             (res) => {
               this.getItens();
@@ -124,7 +124,7 @@ export class UsuarioListComponent implements OnInit {
             stsValue: "A",
             deleteValue: "N"
           }
-          this.HttpService.JSON_DELETE(`/mysql/data/item/usuarios/${event.id}/*/nomePessoa/N`, true, headerConfig)
+          this.HttpService.JSON_DELETE(`/data/item/usuarios/${event.id}/*/nomePessoa/N`, true, headerConfig)
             .then(
             (res) => {
               this.getItens();
@@ -162,7 +162,7 @@ export class UsuarioListComponent implements OnInit {
             stsValue: "A",
             deleteValue: "N"
           }
-          this.HttpService.JSON_PUT(`/mysql/data/status/activate/usuarios/${event.id}`,headerConfig, this.model, true)          
+          this.HttpService.JSON_PUT(`/data/status/activate/usuarios/${event.id}`,headerConfig, this.model, true)          
             .then(
             (res) => {
               this.getItens();

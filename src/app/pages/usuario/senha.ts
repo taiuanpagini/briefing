@@ -57,7 +57,7 @@ export class UsuarioSenhaComponent implements OnInit {
         stsValue: "A",
         deleteValue: "N"
       }
-      this.HttpService.JSON_GET(`/mysql/data/item/usuarios/${params.id}/*/nome`, headerConfig)
+      this.HttpService.JSON_GET(`/data/item/usuarios/${params.id}/*/nome`, headerConfig)
         .then(
         (res) => {
 

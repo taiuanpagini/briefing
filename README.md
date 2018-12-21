@@ -1,5 +1,5 @@
 # WEBPANEL (v1)
-Este documento foi criado com base nos critérios para o desenvolvolvimento do WEBPANEL - Gerenciador de conteúdos da INNSERE
+Este documento foi criado com base nos critérios para o desenvolvolvimento do WEBPANEL - Gerenciador de conteúdos
 
 ### Internacionalização
 Formato de dados para estrutura do banco de dados

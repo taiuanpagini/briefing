@@ -1396,3 +1396,22 @@ input:checked ~ .checkmark:after {
 table#contentToConvert {
     font-size: 24pt;
 }
+
+.card img.img-pdf {
+    width: 150px !important;
+    display: table;
+    margin: 0 auto;
+}
+
+tr.no-border td {
+    border-right: 0;
+}
+
+.accordion .card .card-header {
+    padding: 20px 20px 40px 20px;
+    a {
+        width: 100%;
+        float: left;
+        padding-bottom: 20px;
+    }
+}
